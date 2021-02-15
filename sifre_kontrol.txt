@@ -1,0 +1,74 @@
+#MUAZZEZ NIHAL BAHADIR 18010011035
+buyuk_harfler = "ZXCVBNMÖÇİŞLKJHGFDSAQWERTYUIOPĞÜ"
+kucuk_harfler = "zxcvbnmöçişlkjhgfdsaqwertyuıopğü"
+rakamlar = "0123456789"
+
+isim = str (input("\tLütfen isminizi giriniz:"))
+dg = str (input("\tSayın {} lütfen doğum tarihinizi giriniz:".format(isim)))
+while 1:
+    k_sifre = str(input("\tSayın {} lütfen şifrenizi giriniz:".format(isim)))
+    print("\n********************************************************************************************\n")
+    boyut = len(k_sifre)
+    if boyut < 8 or boyut > 12:
+        print("\t#\tSifrenizin boyutu 8 ile 12 karakter arasinda olmalidir")
+        print("\n********************************************************************************************\n")
+        continue
+    bas = k_sifre[0] in rakamlar
+    son = k_sifre[-1] in rakamlar
+    if bas == True and son == True:
+        print("\t#\tŞifreniz sayi ile başlayip sayi ile bitemez\n")
+        print("********************************************************************************************\n")
+        continue
+    bosluk = " " in k_sifre
+    if bosluk == True:
+        print("\t#\tŞifreniz bosluk karakteri iceremez\n")
+        print("********************************************************************************************\n")
+        continue
+    alfanum = k_sifre.isalnum()
+    if alfanum == True:
+        print("\t#\tŞifreniz en az bir alfanumerik olmayan karakter içermelidir\n")
+        print("********************************************************************************************\n")
+        continue
+    is_kon = isim in k_sifre
+    if is_kon == True:
+        print("\t#\tŞifreniz isminizi içeremez\n")
+        print("********************************************************************************************\n")
+        continue
+    dg_k = dg in k_sifre
+    if dg_k == True :
+        print("\t#\tŞifreniz doğum tarihinizi içeremez\n")
+        print("********************************************************************************************\n")
+        continue
+    a = 0
+    b = 1
+    sayac0 = 0
+    while 2:
+        if b == boyut:
+            break
+        if k_sifre[a] == k_sifre[b]:
+           sayac0 += 1
+        a += 1
+        b += 1
+    if sayac0 > 0:
+        print("\t#\tsifrenizde {} tane tekrarlayan karakter bulunmustur\n\t#\tsifre tekrarlayan karakter iceremez\n".format(sayac0))
+        print("********************************************************************************************\n")
+        continue
+    sayac1 = 0
+    sayac2 = 0
+    for i in k_sifre:
+        buyuk = i in buyuk_harfler
+        kucuk = i in kucuk_harfler
+        if buyuk == True :
+            sayac1 += 1
+        if kucuk == True :
+            sayac2 += 1
+        else:
+            pass
+    if sayac1<1 or sayac2<1:
+        print("\t#\tEn az bir buyuk ve en az bir kucuk harf kullanmalisiniz\n")
+        print("********************************************************************************************\n")
+        continue
+
+    else:
+        print("\t#\tSIFRENIZ BASARIYLA ALINDI..")
+        break
